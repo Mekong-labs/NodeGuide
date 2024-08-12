@@ -65,7 +65,7 @@ ubuntu@ip-xxxx:~/dill$
 
 Check if you created validator keys:
 ```console
-ls -ltr ./validator_keys
+ls -l ./validator_keys
 ```
 ### 2-3 Import your keys to a keystore file
 ```console
@@ -73,9 +73,9 @@ ls -ltr ./validator_keys
 ```
 ### 2-4 Write the password you configured in the previous step into a file:
 ```console
-echo 123@dill > walletPw.txt
+echo 111@dill > walletPw.txt
 ```
-You can replace `123@dill` as a password
+You can replace `111@dill` as a password
 
 ### 2-5 Start light validator
 ```console
@@ -174,9 +174,9 @@ ps -ef | grep dill-node | grep -v grep | awk '{print $2}' | xargs kill
 
 ### 2- Change ports
 ```console
-nano $HOME/dill/default_ports.txt
+vi $HOME/dill/default_ports.txt
 ```
-CTRL+A+D
+
 
 ### 3- Start node 
 ```
@@ -213,9 +213,9 @@ chmod +x health_check.sh && chmod +x start_light.sh && chmod +x default_ports.tx
 
 ### 3- Change ports
 ```console
-nano $HOME/dill/default_ports.txt
+vi $HOME/dill/default_ports.txt
 ```
-CTRL+A+D
+
 
 ### 3- Start node 
 ```
