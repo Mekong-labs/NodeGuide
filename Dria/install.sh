@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Showing HCA logo..."
+echo "Showing Mekong Labs logo..."
 wget -O dria.sh https://raw.githubusercontent.com/mekong-labs/NodeGuide/main/dria.sh && chmod +x dria.sh && ./dria.sh
 curl -s https://github.com/Mekong-labs/NodeGuide/blob/main/logo.sh | bash
 sleep 2
