@@ -1,8 +1,8 @@
 #!/bin/bash
 
-echo "Showing MeKongLab Logo..."
-wget -O loader.sh https://raw.githubusercontent.com/Mekong-labs/NodeGuide/main/loader.sh && chmod +x loader.sh && ./loader.sh
-curl -s https://raw.githubusercontent.com/Mekong-labs/NodeGuide/main/logo.sh | bash
+echo "Showing HCA logo..."
+wget -O dria.sh https://raw.githubusercontent.com/mekong-labs/NodeGuide/main/dria.sh && chmod +x dria.sh && ./dria.sh
+curl -s https://github.com/Mekong-labs/NodeGuide/blob/main/logo.sh | bash
 sleep 2
 
 echo "Welcome to the Ollama/OpenAI setup script!"
