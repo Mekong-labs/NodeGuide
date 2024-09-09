@@ -59,7 +59,7 @@ Create an EVM metamask wallet and write its private and public keys
 
 1- **Download `validator.env`**:
 ```console
-wget https://raw.githubusercontent.com/0xmoei/elixir-validator/main/validator.env?token=GHSAT0AAAAAACVWEIZOVZJKZTBXY4ITUZUKZW4XSIA -O validator.env
+wget wget https://raw.githubusercontent.com/0xmoei/elixir-validator/main/validator.env -O validator.env -O validator.env
 ```
 
 2- **Config `validator.env`**:
