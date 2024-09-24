@@ -2,11 +2,7 @@
 
 ![image](https://github.com/user-attachments/assets/0c016a6b-8395-42d5-9fdc-09bbb20e25df)
 
-Elixir is a modular DPoS network built to power liquidity on orderbook exchanges. 
 
-​Elixir is cross-chain and composable: enabling orderbook DEXs to natively integrate Elixir Protocol - a decentralized protocol - into their core infrastructure to unlock retail liquidity for pairs, among other exciting use cases. The decentralized network serves as crucial underlying infrastructure allowing for exchanges and protocols to easily bootstrap liquidity to their books.
-
-​Elixir has 30+ native integrations into the core infrastructure of leading DEXs.
 
 
 ## System Requirements (Minimum-Recommended)
@@ -59,7 +55,7 @@ Create an EVM metamask wallet and write its private and public keys
 
 1- **Download `validator.env`**:
 ```console
-wget https://raw.githubusercontent.com/0xmoei/elixir-validator/main/validator.env?token=GHSAT0AAAAAACVWEIZOVZJKZTBXY4ITUZUKZW4XSIA -O validator.env
+wget https://raw.githubusercontent.com/Mekong-labs/NodeGuide/main/Elixir-validator/validator.env -0
 ```
 
 2- **Config `validator.env`**:
