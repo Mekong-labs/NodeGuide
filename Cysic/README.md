@@ -90,6 +90,7 @@ chmod +x ~/cysic-verifier/start.sh
 ## Check your points and verification status at :
 
 https://testnet.cysic.xyz/m/dashboard/
+
 ![alt text](image.png)
 
 
