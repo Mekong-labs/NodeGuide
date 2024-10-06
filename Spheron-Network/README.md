@@ -1,7 +1,7 @@
 # Spheron Network Worker Node
-Spheron’s Fizz Nodes offer a low-barrier entry point for anyone looking to contribute resources to Spheron’s decentralized compute network—and earn ongoing rewards for their contributions.
+Spheron’s Fizz Nodes mang đến một cơ hội tham gia với ngưỡng đầu vào thấp cho bất kỳ ai muốn đóng góp tài nguyên vào mạng lưới tính toán phi tập trung của Spheron – và nhận phần thưởng liên tục cho sự đóng góp của họ.
 
-Whether you're looking to run a basic CPU configuration or a powerful GPU setup, this guide will walk you through the entire process
+Dù bạn đang muốn chạy một cấu hình CPU cơ bản hay một hệ thống GPU mạnh mẽ, hướng dẫn này sẽ giúp bạn qua từng bước của toàn bộ quy trình.
 
 ***You earn $FN points that will eventually merge with $SPHN tokens***
 
@@ -9,19 +9,22 @@ Whether you're looking to run a basic CPU configuration or a powerful GPU setup,
 # Step-by-Step Guide to Run Fizz Node
 
 ## Hardware Requirement
-![image](https://github.com/user-attachments/assets/d9d9f0a7-a2f2-41da-8194-16d6dd4b8a00)
+![image](https://github.com/user-attachments/assets/7b3840e5-e1c3-4cea-89db-1b52f2530776)
+
 
 ## Register Fizz Node
 1. Open Your Browser: Navigate to https://fizz.spheron.network
 2. Sign up or log in through Gmail or Github
 3. Click on the “Register New Fizz Node” Button and Connect your wallet
 
-![image](https://github.com/user-attachments/assets/2876dc7d-dc59-460c-9a0d-f42ce0ea4343)
+
+![image](https://github.com/user-attachments/assets/5c46b6a1-1c43-458f-80e3-d370b85195a1)
 
 4. Select your node's OS, resources, Region, Payment Tokens, and Provider ( I selected highest tier provider )
+![image](https://github.com/user-attachments/assets/63b53cae-2c74-47bf-bbb9-6c9a110b3d00)
 
-![image](https://github.com/user-attachments/assets/536c09d7-1af6-4832-9b4c-33b9861fecd6)
-![image](https://github.com/user-attachments/assets/2ce43536-0cbd-435a-baf3-9beb0c05c645)
+![Uploading image.png…]()
+
 
 5. Click **“Register Your Fizz Node“**, To complete the registration, you'll need some ETH on the Spheron chain for gas fees. If you don't have any, you can get some from our faucet at https://faucet.spheron.network
 
