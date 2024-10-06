@@ -23,7 +23,6 @@ Dù bạn đang muốn chạy một cấu hình CPU cơ bản hay một hệ th�
 4. Select your node's OS, resources, Region, Payment Tokens, and Provider ( I selected highest tier provider )
 ![image](https://github.com/user-attachments/assets/63b53cae-2c74-47bf-bbb9-6c9a110b3d00)
 
-![Uploading image.png…]()
 
 
 5. Click **“Register Your Fizz Node“**, To complete the registration, you'll need some ETH on the Spheron chain for gas fees. If you don't have any, you can get some from our faucet at https://faucet.spheron.network
