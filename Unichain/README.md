@@ -108,9 +108,9 @@ nano .env.sepolia
 OP_NODE_L1_ETH_RPC to: https://ethereum-sepolia-rpc.publicnode.com
 
 OP_NODE_L1_BEACON to: https://ethereum-sepolia-beacon-api.publicnode.com
-
-![alt text](image-9.png)
 ```
+![alt text](image-9.png)
+
 
 ### Run the Node
 ```
