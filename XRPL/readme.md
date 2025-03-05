@@ -167,4 +167,4 @@ sudo systemctl enable exrpd
 sudo systemctl start exrpd && sudo journalctl -u exrpd -fo cat
 ```
 
-If you find a bug in this installation guide, please reach out to our https://t.me/jeremy_diamond and let us know.
+If you find a bug in this installation guide, please reach out to our https://t.me/jeremy_mekong and let us know.
