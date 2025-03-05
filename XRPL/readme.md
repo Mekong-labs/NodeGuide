@@ -43,7 +43,7 @@ make install
 ## Initialize Node
 Please replace YOUR_MONIKER with your own moniker.
 ```
-exrpd init MekongLabs --chain-id exrp_1440002-1
+exrpd init MekongLabs --chain-id xrplevm_1449000-1
 ```
 
 ## Install WASMVM
@@ -91,19 +91,20 @@ sed -i -e "s/^indexer *=.*/indexer = \"kv\"/" $HOME/.exrpd/config/config.toml
 
 ## Configure Seed
 ```
-PEERS=`curl -sL https://raw.githubusercontent.com/Peersyst/xrp-evm-archive/main/poa-devnet/peers.txt | sort -R | head -n 10 | awk '{print $1}' | paste -s -d, -`
-sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" ~/.exrpd/config/config.toml
+PEERS=972f58b459debdbaa92fd8479d89128b653d7eb8@65.21.29.250:3640,f8452f28064e9cf9ef1df0c055ac0280576143b6@65.108.69.56:26696,b96d3e221688108e40706d51cca59d80a60f67e9@65.21.200.7:3640,1881f3f71603b7eba91b8b84148834c7322122be@45.77.195.1:26656,6c5b34685a0c1956bde097914e42bc537f5ca5c7@79.137.70.143:26646
+sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.exrpd/config/config.toml
 ```
 
 ## Download Genesis
 ```
-wget -O genesis.json https://raw.githubusercontent.com/Peersyst/xrp-evm-archive/main/poa-devnet/genesis.json --inet4-only
+wget -O genesis.json https://snapshots.polkachu.com/testnet-genesis/xrp/genesis.json --inet4-only
 mv genesis.json ~/.exrpd/config
 ```
 
 ## Configure addrbook 
 ```
-wget -O $HOME/.exrpd/config/addrbook.json "https://xrpl-testnet-services.luckystar.asia/xrpl/addrbook.json"
+wget -O addrbook.json https://snapshots.polkachu.com/testnet-addrbook/xrp/addrbook.json --inet4-only
+mv addrbook.json ~/.exrpd/config
 ```
 
 ### Launch Node
@@ -145,7 +146,7 @@ WantedBy=multi-user.target
 ```
 sudo apt install lz4
 
-wget -O xrp_14779106.tar.lz4 http://exrpd-testnet-snapshots.mekonglabs.tech/xrp_14779106.tar.lz4 --inet4-only
+wget -O xrp_243913.tar.lz4 https://snapshots.polkachu.com/testnet-snapshots/xrp/xrp_243913.tar.lz4 --inet4-only
 
 # Back up priv_validator_state.json if needed
 cp ~/.exrpd/data/priv_validator_state.json  ~/.exrpd/priv_validator_state.json
@@ -153,7 +154,7 @@ cp ~/.exrpd/data/priv_validator_state.json  ~/.exrpd/priv_validator_state.json
 # Reset node state
 exrpd tendermint unsafe-reset-all --home $HOME/.exrpd --keep-addr-book
 
-lz4 -c -d xrp_14779106.tar.lz4  | tar -x -C $HOME/.exrpd
+lz4 -c -d xrp_243913.tar.lz4  | tar -x -C $HOME/.exrpd
 
 # Replace with the backed-up priv_validator_state.json
 cp ~/.exrpd/priv_validator_state.json  ~/.exrpd/data/priv_validator_state.json
