@@ -92,25 +92,25 @@ structsd config set client keyring-backend os
 
 ## Config port, pruning, minimum gas price, enable prometheus and enable indexing
 ```
-echo "export XRPL_PORT="47"" >> $HOME/.bashrc
+echo "export STRUCTS_PORT="10"" >> $HOME/.bashrc
 source $HOME/.bashrc
 
 # set custom ports in app.toml
-sed -i.bak -e "s%:1317%:${XRPL_PORT}317%g;
-s%:8080%:${XRPL_PORT}080%g;
-s%:9090%:${XRPL_PORT}090%g;
-s%:9091%:${XRPL_PORT}091%g;
-s%:8545%:${XRPL_PORT}545%g;
-s%:8546%:${XRPL_PORT}546%g;
-s%:6065%:${XRPL_PORT}065%g" $HOME/.structs/config/app.toml
+sed -i.bak -e "s%:1317%:${STRUCTS_PORT}317%g;
+s%:8080%:${STRUCTS_PORT}080%g;
+s%:9090%:${STRUCTS_PORT}090%g;
+s%:9091%:${STRUCTS_PORT}091%g;
+s%:8545%:${STRUCTS_PORT}545%g;
+s%:8546%:${STRUCTS_PORT}546%g;
+s%:6065%:${STRUCTS_PORT}065%g" $HOME/.structs/config/app.toml
 
 # set custom ports in config.toml file
-sed -i.bak -e "s%:26658%:${XRPL_PORT}658%g;
-s%:26657%:${XRPL_PORT}657%g;
-s%:6060%:${XRPL_PORT}060%g;
-s%:26656%:${XRPL_PORT}656%g;
-s%^external_address = \"\"%external_address = \"$(wget -qO- eth0.me):${XRPL_PORT}656\"%;
-s%:26660%:${XRPL_PORT}660%g" $HOME/.structs/config/config.toml
+sed -i.bak -e "s%:26658%:${STRUCTS_PORT}658%g;
+s%:26657%:${STRUCTS_PORT}657%g;
+s%:6060%:${STRUCTS_PORT}060%g;
+s%:26656%:${STRUCTS_PORT}656%g;
+s%^external_address = \"\"%external_address = \"$(wget -qO- eth0.me):${STRUCTS_PORT}656\"%;
+s%:26660%:${STRUCTS_PORT}660%g" $HOME/.structs/config/config.toml
 
 # config pruning
 sed -i -e "s/^pruning *=.*/pruning = \"custom\"/" $HOME/.structs/config/app.toml 
@@ -118,7 +118,7 @@ sed -i -e "s/^pruning-keep-recent *=.*/pruning-keep-recent = \"100\"/" $HOME/.st
 sed -i -e "s/^pruning-interval *=.*/pruning-interval = \"19\"/" $HOME/.structs/config/app.toml
 
 # set minimum gas price, enable prometheus and disable indexing
-sed -i 's|minimum-gas-prices =.*|minimum-gas-prices = "0axrp"|g' $HOME/.structs/config/app.toml
+sed -i 's|minimum-gas-prices =.*|minimum-gas-prices = "0ualpha"|g' $HOME/.structs/config/app.toml
 sed -i -e "s/prometheus = false/prometheus = true/" $HOME/.structs/config/config.toml
 sed -i -e "s/^indexer *=.*/indexer = \"kv\"/" $HOME/.structs/config/config.toml
 ```
@@ -149,7 +149,6 @@ Create Cosmovisor folders and load the node binary.
 # Create Cosmovisor Folders
 mkdir -p ~/.structs/cosmovisor/genesis/bin
 mkdir -p ~/.structs/cosmovisor/upgrades
-
 # Load Node Binary into Cosmovisor Folder
 cp ~/go/bin/structsd ~/.structs/cosmovisor/genesis/bin
 ```
