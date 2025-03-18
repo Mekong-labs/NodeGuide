@@ -55,7 +55,154 @@ structsd init <YOUR_MONIKER> --chain-id structstestnet-101
 ```
 structsd keys add <KEY>
 ```
+## Install Cosmovisor
 
-## Submit the form
+Using Cosmovisor v1.0.0
+```
+go install github.com/cosmos/cosmos-sdk/cosmovisor/cmd/cosmovisor@v1.0.0
 
-[Link](https://slowninja.notion.site/12feba2cfcc1803a8d72f4f09750fbc6)
+echo "export COSMOVISOR_HOME=$HOME/.structs" >> /root/.bashrc
+echo "export COSMOVISOR_NAME=structsd" >> /root/.bashrc
+echo "export DAEMON_HOME=$HOME/.structs" >> /root/.bashrc
+echo "export DAEMON_NAME=structsd" >> /root/.bashrc
+echo "export DAEMON_ALLOW_DOWNLOAD_BINARIES=false" >> /root/.bashrc
+echo "export DAEMON_RESTART_AFTER_UPGRADE=true" >> /root/.bashrc
+echo "export DAEMON_BACKUP=false" >> /root/.bashrc
+echo "export PATH=$PATH:/usr/local/go/bin:~/go/bin:$HOME/.structs/cosmovisor/current/bin" >> /root/.bashrc
+source /root/.bashrc
+
+cosmovisor version
+```
+
+## Install WASMVM
+```
+export WASMVM_VERSION=v2.1.2
+export LD_LIBRARY_PATH=$HOME/.structs/lib
+mkdir -p $LD_LIBRARY_PATH
+wget "https://github.com/CosmWasm/wasmvm/releases/download/$WASMVM_VERSION/libwasmvm.$(uname -m).so" -O "$LD_LIBRARY_PATH/libwasmvm.$(uname -m).so"
+echo "export LD_LIBRARY_PATH=$HOME/.structs/lib:$LD_LIBRARY_PATH" >> ~/.bashrc
+source ~/.bashrc
+```
+
+## Config Keyring
+```
+structsd config set client chain-id structstestnet-101
+structsd config set client keyring-backend os
+```
+
+## Config port, pruning, minimum gas price, enable prometheus and enable indexing
+```
+echo "export XRPL_PORT="47"" >> $HOME/.bashrc
+source $HOME/.bashrc
+
+# set custom ports in app.toml
+sed -i.bak -e "s%:1317%:${XRPL_PORT}317%g;
+s%:8080%:${XRPL_PORT}080%g;
+s%:9090%:${XRPL_PORT}090%g;
+s%:9091%:${XRPL_PORT}091%g;
+s%:8545%:${XRPL_PORT}545%g;
+s%:8546%:${XRPL_PORT}546%g;
+s%:6065%:${XRPL_PORT}065%g" $HOME/.structs/config/app.toml
+
+# set custom ports in config.toml file
+sed -i.bak -e "s%:26658%:${XRPL_PORT}658%g;
+s%:26657%:${XRPL_PORT}657%g;
+s%:6060%:${XRPL_PORT}060%g;
+s%:26656%:${XRPL_PORT}656%g;
+s%^external_address = \"\"%external_address = \"$(wget -qO- eth0.me):${XRPL_PORT}656\"%;
+s%:26660%:${XRPL_PORT}660%g" $HOME/.structs/config/config.toml
+
+# config pruning
+sed -i -e "s/^pruning *=.*/pruning = \"custom\"/" $HOME/.structs/config/app.toml 
+sed -i -e "s/^pruning-keep-recent *=.*/pruning-keep-recent = \"100\"/" $HOME/.structs/config/app.toml
+sed -i -e "s/^pruning-interval *=.*/pruning-interval = \"19\"/" $HOME/.structs/config/app.toml
+
+# set minimum gas price, enable prometheus and disable indexing
+sed -i 's|minimum-gas-prices =.*|minimum-gas-prices = "0axrp"|g' $HOME/.structs/config/app.toml
+sed -i -e "s/prometheus = false/prometheus = true/" $HOME/.structs/config/config.toml
+sed -i -e "s/^indexer *=.*/indexer = \"kv\"/" $HOME/.structs/config/config.toml
+```
+
+## Configure Seed
+```
+PEERS=f9ff152e331904924c26a4f8b1f46e859d574342@155.138.142.145:26656
+sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.structs/config/config.toml
+```
+
+## Download Genesis
+```
+wget -O genesis.json https://github.com/playstructs/structs-networks/blob/main/genesis.json --inet4-only
+mv genesis.json ~/.structs/config
+```
+
+## Configure addrbook 
+```
+wget -O addrbook.json https://github.com/playstructs/structs-networks/blob/main/addrbook.json --inet4-only
+mv addrbook.json ~/.structs/config
+```
+
+### Launch Node
+
+## Configure Cosmovisor Folder
+Create Cosmovisor folders and load the node binary.
+```
+# Create Cosmovisor Folders
+mkdir -p ~/.structs/cosmovisor/genesis/bin
+mkdir -p ~/.structs/cosmovisor/upgrades
+
+# Load Node Binary into Cosmovisor Folder
+cp ~/go/bin/structsd ~/.structs/cosmovisor/genesis/bin
+```
+
+## Create Service File
+```
+sudo tee /etc/systemd/system/structsd.service > /dev/null <<EOF
+[Unit]
+Description=Cosmovisor for Structs Node
+After=network-online.target
+
+[Service]
+User=root
+ExecStart=/root/go/bin/cosmovisor run start --home /root/.structs
+Restart=always
+RestartSec=3
+LimitNOFILE=65535
+Environment="DAEMON_HOME=/root/.structs"
+Environment="DAEMON_NAME=structsd"
+Environment="DAEMON_ALLOW_DOWNLOAD_BINARIES=false"
+Environment="DAEMON_RESTART_AFTER_UPGRADE=true"
+Environment="LD_LIBRARY_PATH=/root/.structs/lib"
+Environment="DAEMON_BACKUP=false"
+
+[Install]
+WantedBy=multi-user.target
+EOF
+```
+
+## Download snapshot
+```
+sudo apt install lz4
+
+wget -O snapshot_latest.tar.lz4 http://structs-testnet-snapshots.mekonglabs.tech/snapshot_latest.tar.lz4 --inet4-only
+
+# Back up priv_validator_state.json if needed
+cp ~/.structs/data/priv_validator_state.json  ~/.structs/priv_validator_state.json
+
+# Reset node state
+structsd tendermint unsafe-reset-all --home $HOME/.structs --keep-addr-book
+
+lz4 -c -d snapshot_latest.tar.lz4  | tar -x -C $HOME/.structs
+
+# Replace with the backed-up priv_validator_state.json
+cp ~/.structs/priv_validator_state.json  ~/.structs/data/priv_validator_state.json
+```
+
+## Start Node Service
+```
+sudo systemctl daemon-reload
+sudo systemctl enable structsd
+sudo systemctl start structsd && sudo journalctl -u structsd -fo cat
+```
+
+If you find a bug in this installation guide, please reach out to our https://t.me/jeremy_mekong and let us know.
+
