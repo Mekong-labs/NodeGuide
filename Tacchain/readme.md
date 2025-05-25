@@ -156,8 +156,8 @@ cp ~/.tacchaind/priv_validator_state.json  ~/.tacchaind/data/priv_validator_stat
 ## Start Node Service
 ```
 sudo systemctl daemon-reload
-sudo systemctl enable .tacchaind
-sudo systemctl start .tacchaind && sudo journalctl -u .tacchaind -fo cat
+sudo systemctl enable tacchaind
+sudo systemctl start tacchaind && sudo journalctl -u tacchaind -fo cat
 ```
 
 If you find a bug in this installation guide, please reach out to our https://t.me/jeremy_mekong and let us know.
