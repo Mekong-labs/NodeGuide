@@ -43,7 +43,7 @@ junctiond tx staking edit-validator --new-moniker "YOUR_MONIKER_NAME" --identity
 ```
 junctiond tx slashing unjail --from wallet --chain-id junction --gas-adjustment 1.4 --gas auto --gas-prices 0.025amf -y
 ```
-### Jail reason
+### Jail  reason
 ```
 junctiond query slashing signing-info $(junctiond tendermint show-validator)
 ```
