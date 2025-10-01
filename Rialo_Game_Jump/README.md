@@ -42,6 +42,8 @@ Game sẽ mở cửa sổ 800x400, trong đó:
 ```
 
 ## 5. Cấu trúc thư mục
+
+```
 rialo-jump/
 │── rialo_jump.py         # Code chính của game
 │── rialo_logo.png        # Logo Rialo (nhân vật chính)
@@ -49,9 +51,11 @@ rialo-jump/
 
 
 ## 6. Demo Screenshot (tuỳ chọn)
+```
 (Bạn có thể chụp màn hình game đang chạy, thêm vào repo để minh họa).
-
+```
 ## 7. License
+```
 MIT License – bạn có thể sử dụng, chia sẻ và tùy chỉnh tự do.
-
+```
 
