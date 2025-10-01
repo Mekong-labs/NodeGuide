@@ -49,8 +49,9 @@ rialo-jump/
 │── rialo_logo.png        # Logo Rialo (nhân vật chính)
 │── README.md             # Hướng dẫn dự án
 
-
+```
 ## 6. Demo Screenshot (tuỳ chọn)
+
 ```
 (Bạn có thể chụp màn hình game đang chạy, thêm vào repo để minh họa).
 ```
