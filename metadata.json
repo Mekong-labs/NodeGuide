@@ -1,7 +1,8 @@
 {
   "name": "MekongLabs",
-  "website": "https://mekonglabs.tech",
+  "website": "https://mekonglabs.com",
   "description": "Professional trusted validator",
   "logo": "https://raw.githubusercontent.com/mekong-labs/NodeGuide/main/MEKONG.png",
-  "twitter": "https://x.com/Juilan_mr"
+  "twitter": "https://x.com/Juilan_mr",
+  "email": "nguyen@mekonglabs.com"
 }
